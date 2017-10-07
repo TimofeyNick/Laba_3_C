@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+
+int main()
+{
+    std:: string s;
+    std:: getline(std::cin, s);
+    int len_1;
+    len_1 = s.length();
+
+    int pos = 0;
+    for(int i = 0; i < len_1; i++)
+    {
+       char current_num;
+       current_num = s[pos];
+       if (current_num >= 65 && current_num <= 91){
+           current_num = current_num + 32;
+       }
+       std:: cout << current_num;
+       pos = pos + 1;
+   }
+
+}
