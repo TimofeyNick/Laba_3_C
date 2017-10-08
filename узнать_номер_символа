@@ -1,0 +1,9 @@
+#include <iostream>
+
+int main()
+{
+    char a;
+    a = '9';
+    std:: cout << (int)a;
+
+}
