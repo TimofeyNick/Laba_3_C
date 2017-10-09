@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+int compare_it(double tmp_1, double tmp_2)
+{
+    // волзвращает 1 если не совпадают
+    // возвращает 0 если совпадают
+    return 1;
+}
+
+int levenshtein(std:: string s_1_tmp, std:: string s_2_tmp, int len_1,int len_2)
+{
+    double A[len_1 + 1][len_2 +1];
+    for(int i = 0; i < len_1; i++)
+    {
+        A[i][0] = i;
+    }
+    for(int j = 0; j < len_2; j++)
+    {
+        A[0][j] = j;
+    }
+    for(int i = 0; i < len_1; i++)
+    {
+        for(int j = 0; j < len_2; j++)
+        {
+            int tmp_1 = A[i-1][j] + 1;
+            int tmp_2 = A[i][j-1] + 1;
+            int cur = 1;
+            //int cur = compare_it(s_1_tmp[i],s_2_tmp[j]);
+
+            int tmp_3 = A[i-1][j-1] + cur;
+            //int min_tmp = std:: min(tmp_1, tmp_2, tmp_3);
+            A[i][j] = tmp_3;
+        }
+    }
+    return A[len_1 - 1][len_2 - 1];
+}
+
+int main()
+{
+    std:: string s_1;
+    std:: getline(std::cin, s_1);
+    std:: string s_2;
+    std:: getline(std::cin, s_2);
+    int len_1, len_2;
+    len_1 = s_1.length();
+    len_2 = s_2.length();
+
+    int ans;
+    ans = levenshtein(s_1, s_2, len_1, len_2);
+    std:: cout << ans;
+}
