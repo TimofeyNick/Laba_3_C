@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+
+int check_string(std:: string s_1, std::string s_2, int len_1, int adding)
+{
+    // возвращает 1 если строки совпадают
+    // возвращает 0 если строки не совпадают
+    int positive = 1;
+    int negative = 0;
+    for(int i = 0; (i + adding) < len_1; i++)
+    {
+        if(s_1[i + adding] != s_2[i])
+        {
+            return negative;
+        }
+    }
+
+    int last_pos = len_1 - adding;
+    for (int j = 0; j < adding; j++)
+    {
+        if(s_1[j] != s_2[j+last_pos])
+        {
+            return negative;
+        }
+    }
+    return positive;
+}
+
+int sdvig(std:: string s_1_tmp, std::string s_2_tmp, int len_1,int len_2)
+{
+    int exit_constant = -1;
+    if (len_1 != len_2)
+    {
+        return exit_constant;
+    }
+
+    for(int i = 0; i < len_1; i++)
+    {
+        int answer;
+        answer = check_string(s_1_tmp, s_2_tmp, len_1, i);
+        if (answer == 1)
+        {
+            return i;
+        }
+    }
+    return exit_constant;
+}
+
+int main()
+{
+    std:: string s_1;
+    std:: getline(std::cin, s_1);
+    std:: string s_2;
+    std:: getline(std::cin, s_2);
+    int len_1, len_2;
+    len_1 = s_1.length();
+    len_2 = s_2.length();
+
+    int ans;
+    ans = sdvig(s_1, s_2, len_1, len_2);
+    std :: cout << ans;
+}
