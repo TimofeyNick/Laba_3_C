@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+int main()
+{
+    std:: string s;
+    std:: getline(std::cin, s);
+    int len_1 = s.length();
+
+    int left_board = 0;
+    int right_board = 0;
+    int amount = 0;
+    for(int middle = 0; middle < len_1; middle++)
+    {
+        amount = 0;
+        left_board = middle - 1;
+        right_board = middle + 1;
+        while(left_board >= 0 && right_board < len_1 && s[right_board] == s[left_board])
+        {
+            right_board ++;
+            left_board --;
+            amount ++;
+        }
+        std:: cout << (1 + amount * 2) << ' ';
+    }
+}
